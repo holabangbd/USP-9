@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2013 – Universidade de São Paulo</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1094ab;
+        }
+
+        a:hover {
+            color: #0a5663;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Topbar */
+        #topbar {
+            background-color: #1094ab;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        #topbar .topbar-bg {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 12" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,12 L0,12 Z" fill="rgba(0,0,0,0.08)"/></svg>');
+            height: 12px;
+            background-size: cover;
+        }
+
+        #topbar .topbar-inner {
+            display: flex;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 6px 0;
+            gap: 8px 20px;
+        }
+
+        #topbar .topbar-inner a {
+            color: #fff;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        #topbar .topbar-inner a:hover {
+            border-bottom-color: #fff;
+        }
+
+        #topbar .topbar-inner .dashicons {
+            width: 18px;
+            height: 18px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Header */
+        #masthead {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(4px);
+        }
+
+        .site-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .site-branding .custom-logo {
+            max-height: 50px;
+            width: auto;
+        }
+
+        .main-navigation ul {
+            list-style: none;
+            display: flex;
+            gap: 8px 24px;
+            flex-wrap: wrap;
+        }
+
+        .main-navigation ul li a {
+            color: #fff;
+            font-weight: 600;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+            font-size: 15px;
+        }
+
+        .main-navigation ul li a:hover,
+        .main-navigation ul li.current-menu-item a {
+            border-bottom-color: #1094ab;
+        }
+
+        .main-navigation ul li .sub-menu {
+            display: none;
+        }
+
+        #mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Hero / Destaque */
+        .hero-section {
+            background: linear-gradient(135deg, #003b4a 0%, #1094ab 100%);
+            color: #fff;
+            padding: 60px 0 30px;
+            text-align: center;
+            margin-top: -80px;
+            padding-top: 120px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            opacity: 0.9;
+        }
+
+        .btn-hero {
+            background: #fff;
+            color: #1094ab;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.2s;
+            border: 2px solid #fff;
+        }
+
+        .btn-hero:hover {
+            background: transparent;
+            color: #fff;
+        }
+
+        /* Cards objetivos */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card-objetivo {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card-objetivo:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+        .card-objetivo img {
+            max-width: 60px;
+            margin-bottom: 8px;
+            border-radius: 50%;
+            background: #fff;
+            padding: 4px;
+        }
+
+        .card-objetivo span {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Seções */
+        .section-block {
+            padding: 50px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #003b4a;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-item {
+            background: #f9f9f9;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .grid-item-content {
+            padding: 18px 20px 24px;
+        }
+
+        .grid-item-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .grid-item-content ul {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .grid-item-content ul li {
+            padding: 4px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .grid-item-content ul li:last-child {
+            border-bottom: 0;
+        }
+
+        .grid-item-content ul li a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .grid-item-content ul li a::before {
+            content: "›";
+            font-weight: 700;
+            color: #1094ab;
+        }
+
+        /* Institucional RSS */
+        .rss-feed-placeholder {
+            background: #f0f4f5;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .rss-item {
+            flex: 1 1 180px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .rss-item strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .rss-item small {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Números */
+        .numeros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px 20px;
+            background: #003b4a;
+            color: #fff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+        .numero-item {
+            text-align: center;
+        }
+
+        .numero-item .numero {
+            font-size: 2.4rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .numero-item .desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* Mapa campi */
+        .mapa-campi {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+            background: #eef2f3;
+            border-radius: 16px;
+            padding: 20px 24px;
+        }
+
+        .mapa-campi img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .mapa-campi ul {
+            list-style: none;
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .mapa-campi ul li {
+            padding: 4px 0;
+            font-weight: 500;
+        }
+
+        .mapa-campi ul li::before {
+            content: "•";
+            color: #1094ab;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        /* Acesso rápido */
+        .acesso-rapido {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .acesso-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px 6px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: 0.2s;
+            border: 1px solid #eaeaea;
+        }
+
+        .acesso-item:hover {
+            border-color: #1094ab;
+            transform: translateY(-2px);
+        }
+
+        .acesso-item img {
+            max-width: 48px;
+            margin-bottom: 6px;
+        }
+
+        .acesso-item span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* English */
+        .english-section {
+            background: #f5f8fa;
+            border-radius: 16px;
+            padding: 30px 24px;
+        }
+
+        .english-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .english-grid ul {
+            list-style: none;
+        }
+
+        .english-grid ul li {
+            padding: 3px 0;
+        }
+
+        .english-grid ul li a {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .english-grid ul li a::before {
+            content: "›";
+            color: #1094ab;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        #colophon {
+            background: #003b4a;
+            color: #ddd;
+            padding: 40px 0 0;
+        }
+
+        .footer-widgets {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-widgets .logo-footer img {
+            max-height: 50px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-widgets .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .footer-widgets .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-widgets .footer-links ul li {
+            padding: 4px 0;
+        }
+
+        .footer-widgets .footer-links ul li a {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .footer-widgets .footer-links ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            padding: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .footer-bottom a {
+            color: #ccc;
+        }
+
+        /* Responsivo */
+        @media (max-width: 900px) {
+            .footer-widgets {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-widgets .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #topbar .topbar-inner {
+                justify-content: center;
+                gap: 4px 12px;
+            }
+
+            #masthead {
+                background: #003b4a;
+            }
+
+            .site-header-inner {
+                flex-wrap: wrap;
+            }
+
+            .main-navigation ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #003b4a;
+                padding: 12px 0;
+                margin-top: 12px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .main-navigation ul.open {
+                display: flex;
+            }
+
+            #mobile-menu-button {
+                display: block;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .numeros-grid {
+                grid-template-columns: 1fr 1fr;
+                padding: 30px 16px;
+            }
+
+            .mapa-campi ul {
+                columns: 1;
+            }
+
+            .footer-widgets .footer-links {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding-top: 100px;
+            }
+
+            .hero-section h1 {
+                font-size: 1.6rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .numeros-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .acesso-rapido {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-widgets .footer-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Ajustes */
+        .text-center {
+            text-align: center;
+        }
+        .mt-20 { margin-top: 20px; }
+        .mb-20 { margin-bottom: 20px; }
+        .bold { font-weight: 700; }
+        .dashicons { font-family: 'Open Sans', sans-serif; }
+    </style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div id="topbar">
+    <div class="topbar-bg"></div>
+    <div class="container">
+        <div class="topbar-inner">
+            <a href="#"><span class="dashicons">✉</span> Fale com a USP</a>
+            <a href="#"><span class="dashicons">📧</span> Webmail</a>
+            <a href="#"><span class="dashicons">📄</span> Carta de serviços</a>
+            <a href="#"><span class="dashicons">👁</span> Transparência</a>
+            <a href="#"><span class="dashicons">🔒</span> LGPD</a>
+            <a href="#english-section" style="font-weight:700;">English</a>
+            <a href="#"><span class="dashicons">⚙</span> Sistemas</a>
+            <a href="#">Escolas, Faculdades e Institutos</a>
+            <a href="#">Institucional ▾</a>
+            <a href="#">Reitoria ▾</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header id="masthead">
+    <div class="container">
+        <div class="site-header-inner">
+            <div class="site-branding">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 66'><rect width='450' height='66' fill='%23ffffff'/><text x='20' y='45' font-family='Arial' font-weight='700' font-size='32' fill='%231094ab'>USP</text><text x='130' y='34' font-family='Arial' font-size='14' fill='%23fff'>Universidade de São Paulo</text></svg>" alt="USP" class="custom-logo">
+            </div>
+            <nav class="main-navigation">
+                <ul id="primary-menu">
+                    <li><a href="#">Ensino</a></li>
+                    <li><a href="#">Pesquisa e inovação</a></li>
+                    <li><a href="#">Cultura e Extensão</a></li>
+                    <li><a href="#">Comunicação</a></li>
+                </ul>
+                <button id="mobile-menu-button" aria-label="Menu">☰</button>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero-section">
+    <div class="container">
+        <h1>USP – Universidade de São Paulo</h1>
+        <p>Universidade pública, autarquia ligada à Secretaria de Estado de Ensino Superior de São Paulo</p>
+        <a href="#" class="btn-hero">Conheça a USP</a>
+
+        <!-- Cards Missão, Visão, Valores -->
+        <div class="card-grid" style="margin-top:40px;">
+            <div class="card-objetivo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23fff'/><text x='30' y='62' font-size='40' fill='%231094ab'>🎯</text></svg>" alt="Missão">
+                <span>Missão</span>
+            </div>
+            <div class="card-objetivo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23fff'/><text x='30' y='62' font-size='40' fill='%231094ab'>👁</text></svg>" alt="Visão">
+                <span>Visão</span>
+            </div>
+            <div class="card-objetivo">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23fff'/><text x='30' y='62' font-size='40' fill='%231094ab'>⭐</text></svg>" alt="Valores">
+                <span>Valores</span>
+            </div>
+            <div class="card-objetivo" style="background:rgba(255,255,255,0.15); border-color:#fff;">
+                <span style="font-size:1.2rem; font-weight:700;">Objetivos<br>Estratégicos</span>
+                <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-top:8px;">
+                    <span style="background:#fff; color:#003b4a; padding:2px 8px; border-radius:20px; font-size:0.65rem;">PRG</span>
+                    <span style="background:#fff; color:#003b4a; padding:2px 8px; border-radius:20px; font-size:0.65rem;">PRPG</span>
+                    <span style="background:#fff; color:#003b4a; padding:2px 8px; border-radius:20px; font-size:0.65rem;">PRPI</span>
+                    <span style="background:#fff; color:#003b4a; padding:2px 8px; border-radius:20px; font-size:0.65rem;">PRCEU</span>
+                    <span style="background:#fff; color:#003b4a; padding:2px 8px; border-radius:20px; font-size:0.65rem;">PRIP</span>
+                    <span style="background:#fff; color:#003b4a; padding:2px 8px; border-radius:20px; font-size:0.65rem;">Gestão</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jornal da USP e busca -->
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; margin-top:40px; gap:20px; background:rgba(0,0,0,0.2); border-radius:40px; padding:12px 24px;">
+            <div style="display:flex; align-items:center; gap:16px;">
+                <span style="font-weight:700; font-size:1.1rem;">JORNAL DA USP</span>
+                <span style="display:flex; gap:8px;">
+                    <a href="#" style="color:#fff;">f</a>
+                    <a href="#" style="color:#fff;">t</a>
+                    <a href="#" style="color:#fff;">✉</a>
+                    <a href="#" style="color:#fff;">in</a>
+                    <a href="#" style="color:#fff;">ig</a>
+                    <a href="#" style="color:#fff;">▶</a>
+                </span>
+            </div>
+            <div style="display:flex; align-items:center; background:#fff; border-radius:30px; padding:4px 8px 4px 16px; min-width:200px;">
+                <input type="text" placeholder="Busca" style="border:none; outline:none; padding:6px 0; width:100%; background:transparent;">
+                <button style="background:#1094ab; border:none; border-radius:50%; color:#fff; width:32px; height:32px; cursor:pointer;">🔍</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ensino, Pesquisa, Extensão, Inclusão -->
+<section class="section-block">
+    <div class="container">
+        <div class="grid-3">
+            <!-- Ensino -->
+            <div class="grid-item">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 480'><rect width='800' height='480' fill='%23d9e8ec'/><text x='300' y='240' font-size='40' fill='%231094ab'>📚 Ensino</text></svg>" alt="Ensino">
+                <div class="grid-item-content">
+                    <h3><a href="#">Ensino</a></h3>
+                    <ul>
+                        <li><a href="#">Estude na USP</a></li>
+                        <li><a href="#">Graduação</a></li>
+                        <li><a href="#">Informações sobre o ingresso na graduação 2026</a></li>
+                        <li><a href="#">Pós-graduação</a></li>
+                        <li><a href="#">Cursos on-line</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Pesquisa -->
+            <div class="grid-item">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 480'><rect width='800' height='480' fill='%23d9e8ec'/><text x='280' y='240' font-size='40' fill='%231094ab'>🔬 Pesquisa</text></svg>" alt="Pesquisa">
+                <div class="grid-item-content">
+                    <h3><a href="#">Pesquisa</a></h3>
+                    <ul>
+                        <li><a href="#">Pesquisadores</a></li>
+                        <li><a href="#">Produção intelectual</a></li>
+                        <li><a href="#">Inovação tecnológica</a></li>
+                        <li><a href="#">Bibliotecas</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Extensão -->
+            <div class="grid-item">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 480'><rect width='800' height='480' fill='%23d9e8ec'/><text x='260' y='240' font-size='40' fill='%231094ab'>🎭 Extensão</text></svg>" alt="Cultura e Extensão">
+                <div class="grid-item-content">
+                    <h3><a href="#">Cultura e extensão</a></h3>
+                    <ul>
+                        <li><a href="#">Artes e esportes</a></li>
+                        <li><a href="#">Hospitais</a></li>
+                        <li><a href="#">Centros e museus</a></li>
+                        <li><a href="#">Atividades de extensão</a></li>
+                        <li><a href="#">USP Municípios</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Inclusão (4º bloco) -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:30px; margin-top:30px;">
+            <div class="grid-item" style="grid-column: span 1;">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 480'><rect width='800' height='480' fill='%23d9e8ec'/><text x='260' y='240' font-size='40' fill='%231094ab'>🤝 Inclusão</text></svg>" alt="Inclusão">
+                <div class="grid-item-content">
+                    <h3><a href="#">INCLUSÃO</a></h3>
+                    <ul>
+                        <li><a href="#">Diversidade</a></li>
+                        <li><a href="#">Vida no campus</a></li>
+                        <li><a href="#">Direitos Humanos</a></li>
+                        <li><a href="#">Saúde Mental</a></li>
+                        <li><a href="#">Vida profissional</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Institucional (RSS simulado) -->
+<section class="section-block" style="background:#f4f8fa;">
+    <div class="container">
+        <h2 class="section-title">Institucional</h2>
+        <div class="rss-feed-placeholder">
+            <div class="rss-item"><strong>🔹 Reitoria</strong> <small>Atualizado há 2h</small></div>
+            <div class="rss-item"><strong>🔹 Pró-Reitorias</strong> <small>Atualizado há 5h</small></div>
+            <div class="rss-item"><strong>🔹 Superintendências</strong> <small>Atualizado há 1d</small></div>
+            <div class="rss-item"><strong>🔹 Prefeituras dos Campi</strong> <small>Atualizado há 3h</small></div>
+        </div>
+    </div>
+</section>
+
+<!-- Destaques Jornal da USP -->
+<section class="section-block">
+    <div class="container">
+        <h2 class="section-title"><a href="#" style="color:#003b4a;">\\ Destaques do jornal da USP</a></h2>
+        <div class="rss-feed-placeholder" style="background:#fff; border:1px solid #eaeaea;">
+            <div class="rss-item"><strong>Pesquisa revela novo composto contra câncer</strong> <small>Ciência</small></div>
+            <div class="rss-item"><strong>USP é destaque em ranking internacional</strong> <small>Institucional</small></div>
+            <div class="rss-item"><strong>Programa de bolsas ampliado</strong> <small>Ensino</small></div>
+            <div class="rss-item"><strong>Exposição no Museu do Ipiranga</strong> <small>Cultura</small></div>
+            <div class="rss-item"><strong>Novo curso de graduação em IA</strong> <small>Tecnologia</small></div>
+        </div>
+    </div>
+</section>
+
+<!-- Acesso rápido -->
+<section class="section-block" style="background:#003b4a; color:#fff;">
+    <div class="container">
+        <h2 class="section-title" style="color:#fff;">Acesso rápido</h2>
+        <div class="acesso-rapido">
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">🏛</span>
+                <span>USP Digital</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">📊</span>
+                <span>Transparência</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">🎧</span>
+                <span>Ouvidoria</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">📧</span>
+                <span>Webmail</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">🎓</span>
+                <span>Alumni</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">📰</span>
+                <span>Jornal da USP</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">📖</span>
+                <span>Portal de Revistas</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">📘</span>
+                <span>Livros Abertos</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">📋</span>
+                <span>Anuário</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">📱</span>
+                <span>App USP</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">📞</span>
+                <span>Telefonia</span>
+            </a>
+            <a href="#" class="acesso-item" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); color:#fff;">
+                <span style="font-size:2rem;">👤</span>
+                <span>Busca Pessoas</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- USP em números -->
+<section class="section-block">
+    <div class="container">
+        <h2 class="section-title">USP em números</h2>
+        <p style="color:#666; margin-bottom:20px;">Fonte: Anuário Estatístico USP 2025 (fonte de dados 2024).</p>
+        <div class="numeros-grid">
+            <div class="numero-item"><span class="numero">1.217.382</span><span class="desc">Visitantes dos Museus da USP</span></div>
+            <div class="numero-item"><span class="numero">48</span><span class="desc">Bibliotecas</span></div>
+            <div class="numero-item"><span class="numero">97.561</span><span class="desc">Alunos matriculados (graduação e pós-graduação)</span></div>
+            <div class="numero-item"><span class="numero">2.105</span><span class="desc">Prêmios e outras distinções</span></div>
+            <div class="numero-item"><span class="numero">15.429</span><span class="desc">Trabalhos indexados no Web of Science</span></div>
+            <div class="numero-item"><span class="numero">5.306</span><span class="desc">Docentes</span></div>
+            <div class="numero-item"><span class="numero">12.610</span><span class="desc">Técnicos-administrativos</span></div>
+            <div class="numero-item"><span class="numero">88</span><span class="desc">Unidades e outros órgãos</span></div>
+        </div>
+
+        <!-- Mapa Campi -->
+        <div class="mapa-campi" style="margin-top:30px;">
+            <div style="flex:1; min-width:200px;">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250'><rect width='400' height='250' fill='%23c8dce0'/><circle cx='120' cy='120' r='10' fill='%231094ab'/><circle cx='280' cy='80' r='10' fill='%231094ab'/><circle cx='200' cy='170' r='10' fill='%231094ab'/><circle cx='60' cy='200' r='10' fill='%231094ab'/><circle cx='340' cy='150' r='10' fill='%231094ab'/><text x='20' y='240' font-size='12' fill='%23003b4a'>Campus USP</text></svg>" alt="Mapa campi">
+            </div>
+            <div style="flex:2; min-width:200px;">
+                <h4 style="margin-bottom:8px;">Campus</h4>
+                <ul>
+                    <li>São Paulo</li>
+                    <li>Bauru</li>
+                    <li>Lorena</li>
+                    <li>Piracicaba</li>
+                    <li>Pirassununga</li>
+                    <li>Ribeirão Preto</li>
+                    <li>São Carlos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- English Section -->
+<section id="english-section" class="section-block english-section">
+    <div class="container">
+        <h2 class="section-title" style="margin-bottom:6px;">USP for International Community</h2>
+        <p style="max-width:700px; margin-bottom:20px;">USP, as the major institution of higher learning and research in Brazil, is responsible for educating a large part of Brazilian Masters and Ph.D’s. On our site, you can find information about our structure, ways of entrance and services offered to the foreign community.</p>
+        <div class="english-grid">
+            <div>
+                <h4>Education</h4>
+                <ul>
+                    <li><a href="#">Undergraduate</a></li>
+                    <li><a href="#">Courses offered</a></li>
+                    <li><a href="#">How to study at USP</a></li>
+                    <li><a href="#">Graduate Studies</a></li>
+                    <li><a href="#">Graduate Programs</a></li>
+                    <li><a href="#">Online courses</a></li>
+                    <li><a href="#">Other courses</a></li>
+                    <li><a href="#">Visiting professor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Research</h4>
+                <ul>
+                    <li><a href="#">Research at USP</a></li>
+                    <li><a href="#">Technological Innovation</a></li>
+                    <li><a href="#">Libraries and online collections</a></li>
+                </ul>
+                <h4 style="margin-top:16px;">Campus life</h4>
+                <ul>
+                    <li><a href="#">Culture and services</a></li>
+                    <li><a href="#">Health assistance</a></li>
+                    <li><a href="#">Housing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Institutional</h4>
+                <ul>
+                    <li><a href="#">USP</a></li>
+                    <li><a href="#">Institutes, colleges and schools</a></li>
+                    <li><a href="#">International Cooperation</a></li>
+                    <li><a href="#">Statistical Yearbook</a></li>
+                </ul>
+                <h4 style="margin-top:16px;"><a href="#">Talk to USP</a></h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="colophon">
+    <div class="container">
+        <div class="footer-widgets">
+            <div class="logo-footer">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 66'><rect width='450' height='66' fill='none'/><text x='20' y='45' font-family='Arial' font-weight='700' font-size='32' fill='%23ffffff'>USP</text><text x='130' y='34' font-family='Arial' font-size='14' fill='%23aaa'>Universidade de São Paulo</text></svg>" alt="USP" style="max-height:50px; filter:brightness(0) invert(1);">
+                <div style="display:flex; gap:16px; margin-top:12px;">
+                    <a href="#" style="color:#ccc;">✉ Fale com a USP</a>
+                    <a href="#" style="color:#ccc;">📄 Expediente</a>
+                    <a href="#" style="color:#ccc;">ℹ Direitos autorais</a>
+                </div>
+                <div style="margin-top:6px;"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'><rect width='100' height='40' fill='none' stroke='%23aaa' stroke-width='1'/><text x='10' y='25' font-size='10' fill='%23aaa'>PNPC</text></svg>" alt="PNPC"></div>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4 style="color:#fff;">Ensino</h4>
+                    <ul><li><a href="#">Graduação</a></li><li><a href="#">Pós-graduação</a></li><li><a href="#">Cursos on-line</a></li></ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;">Pesquisa</h4>
+                    <ul><li><a href="#">Pesquisa na USP</a></li><li><a href="#">Inovação tecnológica</a></li><li><a href="#">Bibliotecas</a></li><li><a href="#">Produção intelectual</a></li></ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;">Extensão</h4>
+                    <ul><li><a href="#">Hospitais</a></li><li><a href="#">Artes e esportes</a></li><li><a href="#">Centros e museus</a></li><li><a href="#">Atividades de extensão</a></li></ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;">Comunicação</h4>
+                    <ul><li><a href="#">Sala de imprensa</a></li><li><a href="#">Jornal da USP</a></li><li><a href="#">Rádio USP</a></li><li><a href="#">Canal USP</a></li><li><a href="#">Revista USP</a></li><li><a href="#">IPTV USP</a></li><li><a href="#">USP Imagens</a></li><li><a href="#">Fale com a USP</a></li></ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>2026 &copy; USP - Universidade de São Paulo.</span>
+            <span>R. da Reitoria, 374 – Cidade Universitária, Butantã, São Paulo – SP, 05508-220</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
+        const menu = document.querySelector('#primary-menu');
+        if (menu) menu.classList.toggle('open');
+    });
+</script>
+
+</body>
+</html>
